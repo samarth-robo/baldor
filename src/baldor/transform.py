@@ -153,13 +153,13 @@ def to_axis_angle(transform):
   R33 = R[:3,:3]
   # direction: unit eigenvector of R33 corresponding to eigenvalue of 1
   w, W = np.linalg.eig(R33.T)
-  i = np.where(abs(np.real(w) - 1.0) < 1e-8)[0]
+  i = np.where(abs(np.real(w) - 1.0) < 1e-5)[0]
   if not len(i):
     raise ValueError("no unit eigenvector corresponding to eigenvalue 1")
   axis = np.real(W[:, i[-1]]).squeeze()
   # point: unit eigenvector of R corresponding to eigenvalue of 1
   w, Q = np.linalg.eig(R)
-  i = np.where(abs(np.real(w) - 1.0) < 1e-8)[0]
+  i = np.where(abs(np.real(w) - 1.0) < 1e-5)[0]
   if not len(i):
     raise ValueError("no unit eigenvector corresponding to eigenvalue 1")
   point = np.real(Q[:, i[-1]]).squeeze()
